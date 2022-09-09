@@ -18,9 +18,9 @@ package org.jboss.as.quickstarts.cmt.jts.ejb;
 
 import java.rmi.RemoteException;
 
-import javax.ejb.EJBObject;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
+import jakarta.ejb.EJBObject;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
 
 public interface InvoiceManagerEJB extends EJBObject {
 

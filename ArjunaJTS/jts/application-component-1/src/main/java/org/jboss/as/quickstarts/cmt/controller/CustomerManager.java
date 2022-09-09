@@ -19,10 +19,10 @@ package org.jboss.as.quickstarts.cmt.controller;
 import java.util.Date;
 import java.util.Map;
 
-import javax.ejb.EJB;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
+import jakarta.ejb.EJB;
+import jakarta.faces.bean.RequestScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
 
 import org.jboss.as.quickstarts.cmt.jts.ejb.CustomerManagerEJB;
 import org.jboss.logging.Logger;

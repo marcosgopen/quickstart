@@ -18,7 +18,7 @@ package org.jboss.as.quickstarts.cmt.jts.ejb;
 
 import java.rmi.RemoteException;
 
-import javax.ejb.EJBObject;
+import jakarta.ejb.EJBObject;
 
 public interface CustomerManagerEJB extends EJBObject {
 

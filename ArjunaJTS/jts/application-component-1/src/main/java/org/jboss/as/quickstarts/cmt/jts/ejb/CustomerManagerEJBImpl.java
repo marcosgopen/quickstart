@@ -18,17 +18,17 @@ package org.jboss.as.quickstarts.cmt.jts.ejb;
 
 import java.rmi.RemoteException;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.RemoteHome;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.RemoteHome;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import javax.naming.NamingException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.Transaction;
+import jakarta.transaction.TransactionManager;
 
 import org.jboss.as.quickstarts.cmt.jts.resource.DummyXAResource;
 
