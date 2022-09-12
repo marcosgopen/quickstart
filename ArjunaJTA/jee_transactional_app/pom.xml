@@ -84,19 +84,13 @@
         </plugins>
     </build>
     <dependencies>
-   
-                <dependency>
-    <groupId>jakarta.persistence</groupId>
-    <artifactId>jakarta.persistence-api</artifactId>
-    <version>3.1.0</version>
-</dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
         <!-- JSF dependencies -->
-        <dependency>
-            <groupId>jakarta.faces</groupId>
-            <artifactId>jakarta.faces-api</artifactId>
-            <version>${version.jakarta.faces-api}</version>
-        </dependency>
         <dependency>
             <groupId>org.jboss.narayana.jta</groupId>
             <artifactId>narayana-jta</artifactId>

@@ -66,9 +66,9 @@
         </dependency>
         <!-- JSF dependencies -->
         <dependency>
-            <groupId>jakarta.faces</groupId>
-            <artifactId>jakarta.faces-api</artifactId>
-            <version>${version.jakarta.faces-api}</version>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.faces</artifactId>
+            <version>3.0.1</version>
         </dependency>
 
         <!-- Servlet dependencies -->
@@ -79,14 +79,6 @@
             <scope>provided</scope>
         </dependency>
         
-        <dependency>
-    <groupId>org.glassfish</groupId>
-    <artifactId>jakarta.faces</artifactId>
-    <version>3.0.1</version>
-</dependency>
-<!-- Thanks for using https://jar-download.com -->
-        
-
         <!-- IronJacamar Core Dependencies -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>

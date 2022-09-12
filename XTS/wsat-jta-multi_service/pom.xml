@@ -41,6 +41,7 @@
         <jboss1.home>${$jboss1.env.home}</jboss1.home>
         <jboss2.home>${jboss2.env.home}</jboss2.home>
         <skip.resource.plugin>false</skip.resource.plugin>
+        <version.jakarta.xml.ws>2.3.1</version.jakarta.xml.ws>
         <version.javax.jw.jsr181>1.0-MR1</version.javax.jw.jsr181>
     </properties>
 
