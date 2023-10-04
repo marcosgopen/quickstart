@@ -24,10 +24,6 @@ function finish {
     then
        kill -9 $ID5
     fi
-
-    if [ -d "$NARAYANA_INSTALL_LOCATION" ]; then
-      rm -rf $NARAYANA_INSTALL_LOCATION
-    fi
 }
 trap finish EXIT
 
@@ -97,14 +93,10 @@ echo "Booking ID was: $BOOKINGID"
 kill -9 $ID1
 java ${IP_OPTS} -Dquarkus.http.port=8080 $(getDebugArgs 8787) -jar $WORKSPACE/rts/lra-examples/coordinator-quarkus/target/lra-coordinator-quarkus-7.0.1.Final-SNAPSHOT-runner.jar &
 ID1=$!
-echo "Waiting for all the coordinator to recover"
-sleep `timeout_adjust 40 2>/dev/null || echo 40`
+echo "Waiting for all coordinators to recover"
+
+sleep 40
 echo -e "\n\n\n"
 
-set +x
 echo "Confirming with curl ${CURL_IP_OPTS} -X PUT http://localhost:8084/`urlencode $BOOKINGID`"
 curl ${CURL_IP_OPTS} -X PUT http://localhost:8084/`urlencode $BOOKINGID`
-echo ""
-set -x
-
-[ $DEBUG ] && echo "Processes are still running ($ID1 $ID2 $ID3 $ID4 $ID5) press any key to end them" && read
