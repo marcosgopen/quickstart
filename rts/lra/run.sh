@@ -59,16 +59,7 @@ function getDebugArgs {
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-case "$(uname)" in
-   CYGWIN*) export NARAYANA_INSTALL_LOCATION=`cygpath -w $(pwd)/narayana-full-7.0.1.Final-SNAPSHOT` ;;
-   *)       export NARAYANA_INSTALL_LOCATION=$(pwd)/narayana-full-7.0.1.Final-SNAPSHOT ;;
-esac
 
-rm -rf $NARAYANA_INSTALL_LOCATION
-NARAYANA_ZIP="narayana-full-7.0.1.Final-SNAPSHOT-bin.zip"
-[ ! -f "$WORKSPACE/$NARAYANA_ZIP" ] &&\
-   echo "There is no Narayana zip at \$WORKSPACE directory at '$WORKSPACE/$NARAYANA_ZIP" && exit 1
-unzip "$WORKSPACE/$NARAYANA_ZIP"
 
 CURL_IP_OPTS=""
 IP_OPTS="${IPV6_OPTS}" # use setup of IPv6 if it's defined, otherwise go with IPv4
@@ -77,11 +68,10 @@ if [ -z "$IP_OPTS" ]; then
   CURL_IP_OPTS="-4"
 fi
 
-echo "Narayana installed location = $NARAYANA_INSTALL_LOCATION"
-  java ${IP_OPTS} -Dquarkus.http.port=8080 $(getDebugArgs $PORT) -jar $NARAYANA_INSTALL_LOCATION/rts/lra/lra-coordinator-runner.jar &
+  java ${IP_OPTS} -Dquarkus.http.port=8080 $(getDebugArgs $PORT) -jar $WORKSPACE/rts/lra-examples/coordinator-quarkus/target/lra-coordinator-quarkus-7.0.1.Final-SNAPSHOT-runner.jar &
   ID1=$!
 ((PORT++))
-  java ${IP_OPTS} -Dquarkus.http.port=8081 $(getDebugArgs $PORT) -jar $NARAYANA_INSTALL_LOCATION/rts/lra/lra-coordinator-runner.jar &
+  java ${IP_OPTS} -Dquarkus.http.port=8081 $(getDebugArgs $PORT) -jar $WORKSPACE/rts/lra-examples/coordinator-quarkus/target/lra-coordinator-quarkus-7.0.1.Final-SNAPSHOT-runner.jar &
   ID2=$!
 ((PORT++))
   java ${IP_OPTS} -Dquarkus.http.port=8082 $(getDebugArgs $PORT) -jar hotel-service/target/quarkus-app/quarkus-run.jar &
@@ -105,7 +95,7 @@ BOOKINGID=$(curl ${CURL_IP_OPTS} -X POST "http://localhost:8084/?hotelName=TheGr
 echo "Booking ID was: $BOOKINGID"
 
 kill -9 $ID1
-java ${IP_OPTS} -Dquarkus.http.port=8080 $(getDebugArgs 8787) -jar $NARAYANA_INSTALL_LOCATION/rts/lra/lra-coordinator-runner.jar &
+java ${IP_OPTS} -Dquarkus.http.port=8080 $(getDebugArgs 8787) -jar $WORKSPACE/rts/lra-examples/coordinator-quarkus/target/lra-coordinator-quarkus-7.0.1.Final-SNAPSHOT-runner.jar &
 ID1=$!
 echo "Waiting for all the coordinator to recover"
 sleep `timeout_adjust 40 2>/dev/null || echo 40`

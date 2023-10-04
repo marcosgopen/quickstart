@@ -38,6 +38,7 @@ class TripCheck {
 
         if (isConfirm) {
             // the hotel and only one of the flight bookings should be confirmed
+            System.out.println("Confirm count: " + confirmCount[0] + ", cancel count: " + cancelCount[0]);
             if (confirmCount[0] != 2 || cancelCount[0] != 1) {
                 System.out.printf("TripCheck: validateBooking: the hotel and only one of the flight bookings should have been confirmed%n");
                 return false;

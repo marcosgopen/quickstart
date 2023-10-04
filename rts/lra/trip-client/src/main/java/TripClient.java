@@ -1,4 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.narayana.lra.LRAConstants;
 import model.Booking;
 
 import java.io.BufferedReader;
@@ -98,6 +100,7 @@ public class TripClient {
             connection.setDoOutput(true);
             connection.setRequestMethod(method);
             connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Narayana-LRA-API-version", LRAConstants.API_VERSION_1_0);
 
             try (DataOutputStream dos = new DataOutputStream(connection.getOutputStream())) {
                 dos.writeBytes(jsonBody);

@@ -28,10 +28,33 @@ public class Booking {
     @JsonProperty("details")
     private Booking[] details;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDetails(Booking[] details) {
+        this.details = details;
+    }
+
+    public void setDecodingException(IOException decodingException) {
+        this.decodingException = decodingException;
+    }
     private IOException decodingException;
 
     public Booking(String id, String type, Booking... bookings) {
         this(id, "Aggregate Booking", type, BookingStatus.PROVISIONAL, bookings);
+    }
+
+    public Booking() {
+        this("", "", "");
     }
 
     public Booking(String id, String name, String type) {
@@ -123,8 +146,8 @@ public class Booking {
     }
 
     public String toString() {
-        return String.format("{\"id\":\"%s\",\"name\":\"%s\",\"type\":\"%s\",\"status\":\"%s\"}",
-                id, name, type, status);
+        return String.format("{\"id\":\"%s\",\"name\":\"%s\",\"type\":\"%s\",\"status\":\"%s\"}", id, name, type,
+                status);
     }
 
     public boolean merge(Booking booking) {
@@ -159,14 +182,17 @@ public class Booking {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Booking booking = (Booking) o;
-
-        if (!getId().equals(booking.getId())) return false;
-        if (!getName().equals(booking.getName())) return false;
-        if (!getType().equals(booking.getType())) return false;
+        if (!getId().equals(booking.getId()))
+            return false;
+        if (!getName().equals(booking.getName()))
+            return false;
+        if (!getType().equals(booking.getType()))
+            return false;
         return true;
     }
 
@@ -177,7 +203,6 @@ public class Booking {
         result = 31 * result + getType().hashCode();
         return result;
     }
-
     public enum BookingStatus {
         CONFIRMED, CANCELLED, PROVISIONAL, CONFIRMING, CANCEL_REQUESTED
     }

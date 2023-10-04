@@ -2,6 +2,7 @@ package io.narayana.rts.lra.demo.tripcontroller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import io.narayana.lra.LRAConstants;
 import io.narayana.lra.client.NarayanaLRAClient;
 import io.narayana.rts.lra.demo.model.Booking;
 
@@ -112,7 +113,7 @@ public class TripController {
 
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
         builder.path(URLEncoder.encode(tripBooking.getId(), "UTF-8"));
-        return Response.created(builder.build()).entity(tripBooking).build();
+        return Response.created(builder.build()).entity(tripBooking).header("Narayana-LRA-API-version", LRAConstants.API_VERSION_1_0).build();
     }
 
     @PUT

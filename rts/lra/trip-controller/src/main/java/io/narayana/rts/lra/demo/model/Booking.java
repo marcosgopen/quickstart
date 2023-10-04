@@ -48,6 +48,30 @@ public class Booking {
         init(id, name, type, status, details);
     }
 
+    public Booking() {
+        this("", "", "");
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDetails(Booking[] details) {
+        this.details = details;
+    }
+
+    public void setDecodingException(IOException decodingException) {
+        this.decodingException = decodingException;
+    }
+
     public Booking(IOException decodingException) {
         this.decodingException = decodingException;
     }
