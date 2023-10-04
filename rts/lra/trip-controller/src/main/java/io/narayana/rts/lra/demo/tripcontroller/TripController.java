@@ -127,26 +127,26 @@ public class TripController {
                     .build());
 
         // THIS WOULD LIKELY BE IN A SEPARATE BUSINESS METHOD - requestCancel the first flight found (and use the second one)
-        Optional<Booking> firstFlight = Arrays.stream(tripBooking.getDetails()).filter(b -> "Flight".equals(b.getType())).findFirst();
-        firstFlight.ifPresent(Booking::requestCancel);
-        Arrays.stream(tripBooking.getDetails()).filter(Booking::isCancelPending).forEach(b -> {
-            WebTarget webTarget;
-
-            try {
-                webTarget = getFlightTarget().path(URLEncoder.encode(b.getId().toString(), "UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                throw new BookingException(-1, "flight cancel problem: UnsupportedEncodingException" + e);
-            }
-
-            Response response = webTarget.request().delete();
-
-            if (response.getStatus() != Response.Status.OK.getStatusCode()) {
-                response.close();
-                throw new BookingException(response.getStatus(), "flight cancel problem: " + b.getId());
-            }
-
-            b.setStatus(Booking.BookingStatus.CANCELLED);
-        });
+//        Optional<Booking> firstFlight = Arrays.stream(tripBooking.getDetails()).filter(b -> "Flight".equals(b.getType())).findFirst();
+//        firstFlight.ifPresent(Booking::requestCancel);
+//        Arrays.stream(tripBooking.getDetails()).filter(Booking::isCancelPending).forEach(b -> {
+//            WebTarget webTarget;
+//
+//            try {
+//                webTarget = getFlightTarget().path(URLEncoder.encode(b.getId().toString(), "UTF-8"));
+//            } catch (UnsupportedEncodingException e) {
+//                throw new BookingException(-1, "flight cancel problem: UnsupportedEncodingException" + e);
+//            }
+//
+//            Response response = webTarget.request().delete();
+//
+//            if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+//                response.close();
+//                throw new BookingException(response.getStatus(), "flight cancel problem: " + b.getId());
+//            }
+//
+//            b.setStatus(Booking.BookingStatus.CANCELLED);
+//        });
 
         service.confirmBooking(tripBooking, getHotelTarget(), getFlightTarget());
         return Response.ok(tripBooking.toJson()).build();
