@@ -19,7 +19,10 @@ class TripCheck {
         Booking bookingCopy = new Booking(booking);
         final int[] confirmCount = {0};
         final int[] cancelCount = {0};
-
+        System.out.println(booking);
+        Arrays.stream(booking.getDetails()).forEach(b -> {
+            System.out.println(b);
+        });
         // NB parallel() results in IllegalStateException: WFLYWELD0039 because
         // ... trying to access a weld deployment with a Thread Context ClassLoader that is not associated with the deployment
         Arrays.stream(booking.getDetails()).forEach(b -> {
@@ -27,19 +30,22 @@ class TripCheck {
                 checkDependentBooking(b, hotelTarget, flightTarget);
 
                 if (b.getStatus().equals(Booking.BookingStatus.CANCELLED)) {
+                    System.out.println(b.getType() + " " + b.getName() + " CANCELLED ");
                     cancelCount[0] += 1;
                 } else if (b.getStatus().equals(Booking.BookingStatus.CONFIRMED)) {
+                    System.out.println(b.getType() + " " + b.getName() + " CONFIRMED ");
+
                     confirmCount[0] += 1;
                 }
             } catch (BookingException e) {
                 bookingException[0] = e;
             }
         });
-
+        System.out.println("Confirm count: " + confirmCount[0] + ", cancel count: " + cancelCount[0]);
         if (isConfirm) {
-            // the hotel and only one of the flight bookings should be confirmed
-            if (confirmCount[0] != 2 || cancelCount[0] != 1) {
-                System.out.printf("TripCheck: validateBooking: the hotel and only one of the flight bookings should have been confirmed%n");
+            if (confirmCount[0] != 3) {
+                System.out.printf(
+                        "TripCheck: validateBooking: the hotel and 2 flight bookings should have been confirmed%n");
                 return false;
             }
         } else {

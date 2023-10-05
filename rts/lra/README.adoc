@@ -13,8 +13,7 @@ mvn clean package
                 Book flight option 1
             start LRA 4
                 Book flight option 2
-    cancel LRA 3
-    close LRA 1 (results in the hotel and flight option 2 being confirmed)
+    close LRA 1 (results in the hotel and flights being confirmed)
 
 ### Before you start
 
