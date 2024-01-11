@@ -163,7 +163,6 @@
 
         <version.byteman>4.0.19</version.byteman>
         <version.clear.plugin>3.0.0</version.clear.plugin>
-        <version.com.github.fungal>0.11.0.Final</version.com.github.fungal>
         <version.commons-dbcp2>2.2.0</version.commons-dbcp2>
         <version.commons-pool2>2.5.0</version.commons-pool2>
         <version.compiler.plugin>3.5.1</version.compiler.plugin>
